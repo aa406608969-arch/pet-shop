@@ -53,7 +53,7 @@ form.addEventListener('submit', async (event) => {
   const email = emailInput.value.trim().toLowerCase();
   const token = tokenInput.value.replace(/\s/g, '');
   if (!email || !emailInput.checkValidity()) return setStatus('请输入正确的邮箱地址。', true);
-  if (!/^\d{6}$/.test(token)) return setStatus('请输入邮件中的 6 位验证码。', true);
+  if (!/^\d{8}$/.test(token)) return setStatus('请输入邮件中的 8 位验证码。', true);
 
   submitButton.disabled = true;
   setStatus('正在验证…');
