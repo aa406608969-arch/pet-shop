@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>邮箱验证 · 拾光宠物</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+  <main class="register-wrap">
+    <a class="brand" href="index.html">拾光宠物<span>SEASON PETS</span></a>
+    <form id="verifyEmailForm" class="register-card" novalidate>
+      <p class="eyebrow">EMAIL VERIFICATION</p>
+      <h1>输入邮箱验证码</h1>
+      <p class="hint">验证码已发送至 <b id="emailHint">你的邮箱</b>。请在邮件中查看 6 位验证码。</p>
+      <label>邮箱<input required type="email" name="email" autocomplete="email" placeholder="name@example.com"></label>
+      <label>验证码<input required inputmode="numeric" pattern="[0-9]{6}" maxlength="6" name="token" autocomplete="one-time-code" placeholder="6 位数字验证码"></label>
+      <button class="primary" type="submit">验证并登录</button>
+      <button class="text-button" id="resendButton" type="button">重新发送验证码</button>
+      <p class="hint" id="verifyStatus" aria-live="polite"></p>
+      <p class="hint auth-link"><a href="register.html">返回注册</a> · <a href="index.html">返回登录</a></p>
+    </form>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="verify-email.js"></script>
+</body>
+</html>
