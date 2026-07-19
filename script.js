@@ -58,14 +58,6 @@ $('#loginForm').onsubmit = async (event) => {
   if (error) return authStatus('登录失败：' + error.message, true);
   closeModal('authModal'); $('#authBtn').textContent = '已登录'; await loadCart();
 };
-$('#registerForm').onsubmit = async (event) => {
-  event.preventDefault(); const f = new FormData(event.target), password = f.get('password');
-  if (password !== f.get('passwordConfirm')) return authStatus('两次输入的密码不一致。', true);
-  const { data, error } = await db.auth.signUp({ email: f.get('email'), password, options: { emailRedirectTo: `${location.origin}${location.pathname}` } });
-  if (error) return authStatus('注册失败：' + error.message, true);
-  event.target.reset();
-  authStatus(data.session ? '注册成功，已登录。' : '验证邮件已发送，请打开邮箱完成验证后再登录。');
-};
 $('#checkout').onclick = () => { if (!cart.length) return alert('请先将商品加入购物袋。'); closeCart(); $('#checkoutModal').classList.add('show'); };
 $('#orderForm').onsubmit = (event) => { event.preventDefault(); alert('配送信息已保存。支付功能尚未接入。'); closeModal('checkoutModal'); };
 load();
