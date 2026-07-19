@@ -12,9 +12,9 @@
     <form id="verifyEmailForm" class="register-card" novalidate>
       <p class="eyebrow">EMAIL VERIFICATION</p>
       <h1>输入邮箱验证码</h1>
-      <p class="hint">验证码已发送至 <b id="emailHint">你的邮箱</b>。请在邮件中查看 6 位验证码。</p>
+      <p class="hint">验证码已发送至 <b id="emailHint">你的邮箱</b>。请在邮件中查看 8 位验证码。</p>
       <label>邮箱<input required type="email" name="email" autocomplete="email" placeholder="name@example.com"></label>
-      <label>验证码<input required inputmode="numeric" pattern="[0-9]{6}" maxlength="6" name="token" autocomplete="one-time-code" placeholder="6 位数字验证码"></label>
+      <label>验证码<input required inputmode="numeric" pattern="[0-9]{8}" maxlength="8" name="token" autocomplete="one-time-code" placeholder="8 位数字验证码"></label>
       <button class="primary" type="submit">验证并登录</button>
       <button class="text-button" id="resendButton" type="button">重新发送验证码</button>
       <p class="hint" id="verifyStatus" aria-live="polite"></p>
