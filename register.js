@@ -39,8 +39,7 @@ form.onsubmit = async (event) => {
   setStatus('正在创建账号并发送验证邮件…');
   const { data, error } = await db.auth.signUp({
     email,
-    password,
-    options: { emailRedirectTo: `${location.origin}${location.pathname.replace('register.html', 'index.html')}` }
+    password
   });
 
   if (error) {
