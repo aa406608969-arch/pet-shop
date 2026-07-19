@@ -40,18 +40,14 @@ async function loadAddresses() {
   addresses = data || [];
 }
 
-function detail(id) {
-  const item = products.find((product) => product.id === id); if (!item) return;
-  $('#detail').innerHTML = `<button class="x" onclick="closeModal('detailModal')">×</button><div class="detail-art" style="background:url('${item.image_url}') center/cover"></div><div class="detail-copy"><p class="eyebrow">${item.category}</p><h2>${item.name}</h2><div class="price">${money(item.price)}</div><p>${item.description || ''}</p><div class="stock">库存：${item.stock} 件</div><button class="primary" onclick="add('${item.id}')">加入购物袋　→</button></div>`;
-  $('#detailModal').classList.add('show');
-}
+function detail(id) { location.href = `product.html?id=${encodeURIComponent(id)}`; }
 
 async function add(id) {
-  if (!currentUser) { closeModal('detailModal'); $('#authModal').classList.add('show'); return; }
+  if (!currentUser) { $('#authModal').classList.add('show'); return; }
   const old = cart.find((item) => item.id === id);
   const { error } = await db.from('cart_items').upsert({ user_id: currentUser.id, product_id: id, quantity: (old?.q || 0) + 1 }, { onConflict: 'user_id,product_id' });
   if (error) return alert(error.message);
-  closeModal('detailModal'); await loadCart(); showCart();
+  await loadCart(); showCart();
 }
 
 function renderCart() {
@@ -108,4 +104,5 @@ $('#loginForm').onsubmit = async (event) => { event.preventDefault(); const form
 $('#checkout').onclick = () => { if (!cart.length) return alert('请先将商品加入购物袋。'); if (!currentUser) return $('#authModal').classList.add('show'); closeCart(); prepareCheckout(); };
 $('#addressSelect').onchange = (event) => fillAddress(addresses.find((a) => a.id === event.target.value));
 $('#orderForm').onsubmit = submitOrder;
+if (new URLSearchParams(location.search).get('login') === '1') $('#authModal').classList.add('show');
 load();
